@@ -1,0 +1,17 @@
+{
+  "name": "coderdex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"cd coderdex-fe && npm start\" \"cd coderdex-be && npm start\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "i": "^0.3.7",
+    "npm": "^9.5.0"
+  }
+}
