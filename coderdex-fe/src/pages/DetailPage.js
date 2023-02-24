@@ -230,7 +230,6 @@ export const DetailPage = () => {
               >
                 Delete Pokemon
               </Button>
-              <Button>Update Pokemon</Button>
             </Stack>
           </Grid>
         </Grid>
