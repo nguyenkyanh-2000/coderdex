@@ -67,7 +67,7 @@ export const editPokemon = createAsyncThunk(
 
 export const deletePokemon = createAsyncThunk(
   "pokemons/deletePokemon",
-  async ({ id }, { rejectWithValue, dispatch }) => {
+  async (id, { rejectWithValue, dispatch }) => {
     try {
       let url = `/pokemons/${id}`;
       await apiService.delete(url);

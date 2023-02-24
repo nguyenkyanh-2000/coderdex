@@ -1,0 +1,37 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "pokedex-api",
+    "dateExported": "2023-02-23T02:35:41.679Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "3eded2cf-09c9-46d5-b552-0da9f3fbf349",
+            "colId": "03f66759-ae6c-4ca2-984c-123ba9f242f9",
+            "containerId": "",
+            "name": "Post a book",
+            "url": "http://localhost:5000/pokemons/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2023-02-23T02:30:08.521Z",
+            "modified": "2023-02-23T02:30:30.791Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "23e189d2-e9d2-47ab-a568-bc48d5b59f63",
+            "colId": "03f66759-ae6c-4ca2-984c-123ba9f242f9",
+            "containerId": "",
+            "name": "Get a Pokemon",
+            "url": "http://localhost:5000/pokemons/",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2023-02-23T02:31:27.832Z",
+            "modified": "2023-02-23T02:31:30.906Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
