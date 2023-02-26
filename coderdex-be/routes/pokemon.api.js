@@ -187,10 +187,89 @@ router.post("/", (req, res, next) => {
     db = JSON.stringify(db);
     fs.writeFileSync("db.json", db);
     // send response
-    res.status(200).send("ok");
+    res.status(200).send({ data: newPokemon });
   } catch (error) {
     next(error);
   }
 });
 
+router.put("/:id", (req, res, next) => {
+  try {
+    let db = fs.readFileSync("db.json", "utf-8");
+    const { pokemons } = JSON.parse(db);
+    const pokemonTypes = [
+      "bug",
+      "dragon",
+      "fairy",
+      "fire",
+      "ghost",
+      "ground",
+      "normal",
+      "psychic",
+      "steel",
+      "dark",
+      "electric",
+      "fighting",
+      "flying",
+      "grass",
+      "ice",
+      "poison",
+      "rock",
+      "water",
+    ];
+    // input validation
+    let { name, url, types } = req.body;
+    let { id } = req.params;
+    console.log(req);
+
+    // Non-existent pokemon?
+    if (!pokemons.find((pokemon) => pokemon.id == id)) {
+      const exception = new Error(`Non-existent pokemon`);
+      exception.status = 401;
+      throw exception;
+    }
+
+    if (!name || !url || !types) {
+      const exception = new Error(`Missing body info`);
+      exception.status = 401;
+      throw exception;
+    }
+
+    // Filter out nulls
+    types = types.filter((type) => type);
+
+    // No more case sensitive inputs
+    name = name.toLowerCase();
+    types = types.map((type) => type.toLowerCase());
+
+    // Max: 2 types per pokemon
+    if (types.length > 2) {
+      const exception = new Error(`Too many types`);
+      exception.status = 401;
+      throw exception;
+    }
+    // Limited set of pokemon types
+    if (!types.some((type) => pokemonTypes.includes(type))) {
+      const exception = new Error(`Wrong types`);
+      exception.status = 401;
+      throw exception;
+    }
+    // processing
+    id = parseInt(id);
+    const newPokemon = { id, name, types, url };
+    db = JSON.parse(db);
+    db.pokemons = pokemons.map((pokemon) => {
+      return pokemon.id === id
+        ? { ...pokemon, name: name, types: types, url: url }
+        : { ...pokemon };
+    });
+    db = JSON.stringify(db);
+    fs.writeFileSync("db.json", db);
+
+    // send response
+    res.status(200).send({ data: newPokemon });
+  } catch (error) {
+    next(error);
+  }
+});
 module.exports = router;
